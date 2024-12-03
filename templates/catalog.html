@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Каталог{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="header">
+            <h1><a href="/catalog">Каталог</a></h1>
+        </div>
+
+        <div class="sort-block", style="font-size: 24px;">
+            Сортировать по:
+            <a href="?sort=name", style="margin-right: 20px; margin-left: 20px;">
+                названию
+            </a>
+            <a href="?sort=min_price", style="margin-right: 20px;">
+                начиная с дешевых
+            </a>
+            <a href="?sort=max_price", style="margin-right:  20px;">
+                начиная с дорогих
+            </a>
+        </div>
+
+        <div class="content", style="display: table;">
+            {% for element in page%}
+                <p style="display: table-row;">
+                <a href="{{ element.slug }}" style="font-size: 48px;">
+                    {{ element.name }}</a>
+                <p style="font-weight: bold; font-size: 20px;" >
+                    Стоимость {{ element.price }}</p>
+                <img src="{{ element.image }}"></img>
+                </p>
+            {% endfor %}            
+
+        </div>
+    </div>
+{% endblock %}
